@@ -103,7 +103,7 @@ abline(h=1,col='blue')
 abline(h=0,col='green')
 
 # bag both results set and measure final AUC score
-print("*****************************These two separate prediction values are now combined for Boosting****************************************"))
+print("*****************************These two separate prediction values are now combined for Boosting****************************************")
 valid_all <- (validate_predictions_known[,2] + validate_predictions_unknown[,2]) / 2
 auc_rf = roc(response=as.numeric(as.factor(validate_df[,outcome_name]))-1,
              predictor=valid_all)
