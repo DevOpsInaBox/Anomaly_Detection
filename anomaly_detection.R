@@ -67,11 +67,11 @@ anom<-prostate_df[row_outliers,]
 print(paste0("**********************Number of Rows detected as Anomaly:",nrow(anom),"***************************"))
 print("**************************************Plot of Pattern and Anomaly(Deviation) is built from H2O******************************************")
 plot(sort(err$Reconstruction.MSE))
-print("***********************************From the plot, we have deviation significant from Error value = 0.1**********************************")
-print("*************With the H2O output, the original dataset is split into two sets - Below 0.1 error and Above/Equal to 0.1 error************")
+print("***********************************From the plot, we have deviation significant from Error value = 0.07**********************************")
+print("*************With the H2O output, the original dataset is split into two sets - Below 0.07 error and Above/Equal to 0.07 error************")
 # use the easy portion and model with random forest using same settings
-print("***************************With the dataset having Below 0.1 error, Random Forest Prediction Model is built****************************")
-train_df_auto <- train_df[err$Reconstruction.MSE < 0.1,]
+print("***************************With the dataset having Below 0.07 error, Random Forest Prediction Model is built****************************")
+train_df_auto <- train_df[err$Reconstruction.MSE < 0.07,]
 
 set.seed(1234)
 rf_model <- randomForest(x=train_df_auto[,feature_names],
@@ -88,8 +88,8 @@ abline(h=1,col='blue')
 abline(h=0,col='green')
 
 # use the hard portion and model with random forest using same settings
-print("******************With the remaining dataset having Above/Equal to 0.1 error, Random Forest Prediction Model is built******************")
-train_df_auto <- train_df[err$Reconstruction.MSE >= 0.1,]
+print("******************With the remaining dataset having Above/Equal to 0.07 error, Random Forest Prediction Model is built******************")
+train_df_auto <- train_df[err$Reconstruction.MSE >= 0.07,]
 
 set.seed(1234)
 rf_model <- randomForest(x=train_df_auto[,feature_names],
