@@ -62,7 +62,9 @@ prostate.anon = h2o.anomaly(prostate.dl, prostate.hex, per_feature=FALSE)
 print("**************************************First few rows of Error values from H2O Deep Learning ******************************************")
 head(prostate.anon)
 err <- as.data.frame(prostate.anon)
-
+row_outliers <- which(err > 0.002)
+anom<-prostate_df[row_outliers,]
+print(paste0("**********************Number of Rows detected as Anomaly:",nrow(anom),"***************************"))
 print("**************************************Plot of Pattern and Anomaly(Deviation) is built from H2O******************************************")
 plot(sort(err$Reconstruction.MSE))
 print("***********************************From the plot, we have deviation significant from Error value = 0.1**********************************")
